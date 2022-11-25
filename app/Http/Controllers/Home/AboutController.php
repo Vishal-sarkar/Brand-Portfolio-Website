@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
+use App\Models\MultiImage;
 use Image;
 
 class AboutController extends Controller
@@ -49,5 +50,15 @@ class AboutController extends Controller
             return redirect()->back()->with($notification);
         }
         
+    }
+
+    public function HomeAbout(){
+        $aboutPage = About::find(1);
+        return view('frontend.about_page', compact('aboutPage'));
+    }
+
+    public function AboutMultiImage(){
+        $multImg = MultiImage::find(1);
+        return view('admin.about_page.multimage', compact('multImg'));
     }
 }
