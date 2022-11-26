@@ -10,7 +10,7 @@
                     <div class="card-body">
 
                         <h4 class="card-title">Add Multi Image</h4>
-                        <form action="{{route('update.about')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('store.multi.image')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             
 
