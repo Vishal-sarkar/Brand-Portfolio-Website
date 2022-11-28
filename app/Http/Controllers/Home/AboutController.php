@@ -86,4 +86,40 @@ class AboutController extends Controller
         $multImg = MultiImage::all();
         return view('admin.about_page.All_multiimage', compact('multImg'));
     }
+
+    public function EditMultiImage($id){
+        $multImg = MultiImage::find($id);
+        return view('admin.about_page.edit_multiimage', compact('multImg'));
+    }
+
+    public function UpdateMultiImage(Request $request, $id){
+        $image = $request->file('multImg');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(220,220)->save('upload/multi_image/'.$name_gen);
+        $save_url = 'upload/multi_image/'.$name_gen;
+        MultiImage::findOrFail($id)->update([
+            'multImg' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Image Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.multi.image')->with($notification);
+        
+    }
+
+    public function DeleteMultiImage($id){
+        $multImg = MultiImage::find($id);
+        $img = $multImg->multImg;
+        unlink($img);
+        MultiImage::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.multi.image')->with($notification);
+    }
 }

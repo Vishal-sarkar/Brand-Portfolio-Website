@@ -28,33 +28,29 @@
                                     <div class="card-body">
         
                                         <h4 class="card-title">Default Datatable</h4>
-                                        <p class="card-title-desc">DataTables has most features enabled by
-                                            default, so all you need to do to use it with your own tables is to call
-                                            the construction function: <code>$().DataTable();</code>.
-                                        </p>
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Sl</th>
+                                                <th>About Multi Image</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
         
         
                                             <tbody>
+                                                @php($i = 1)
+                                                @foreach($multImg as $img)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>{{$i++}}</td>
+                                                <td><img src="{{asset($img->multImg)}}" style="width:60px; height: 50px"></td>
+                                                <td>
+                                                    <a href="{{route('edit.multi.image',$img->id)}}" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{route('delete.multi.image',$img->id)}}" class="btn btn-danger sm" title="Delete Data" id="delete"><i class=" fas fa-trash"></i></a>
+                                                </td>
                                             </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
         
