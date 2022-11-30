@@ -51,9 +51,9 @@
                                     <td>{{$item->portfolio_title}}</td>
                                     <td><img src="{{asset($item->portfolio_image)}}" style="width:60px; height: 50px"></td>
                                     <td>
-                                        <a href="{{route('edit.multi.image',$img->id)}}" class="btn btn-info sm"
+                                        <a href="{{route('edit.portfolio',$item->id)}}" class="btn btn-info sm"
                                             title="Edit Data"><i class="fas fa-edit"></i></a>
-                                        <a href="{{route('delete.multi.image',$img->id)}}" class="btn btn-danger sm"
+                                        <a href="{{route('delete.portfolio',$item->id)}}" class="btn btn-danger sm"
                                             title="Delete Data" id="delete"><i class=" fas fa-trash"></i></a>
                                     </td>
                                 </tr>
